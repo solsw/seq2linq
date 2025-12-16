@@ -1,13 +1,17 @@
 # seq2linq
 [![Go Reference](https://pkg.go.dev/badge/github.com/solsw/seq2linq.svg)](https://pkg.go.dev/github.com/solsw/seq2linq)
 
-[<img src="https://api.gitsponsors.com/api/badge/img?id=427105928" height="20">](https://api.gitsponsors.com/api/badge/link?p=JuJstBNp7ndvJE51saddkORQC9tJKbhThJOER++0kJb1kqonUPOnKXTv2w4yRhJ9ukTgSIu3Uvj+vYYAKMdEQECKTFSCouvgBUkFNTNJ8aOJKxIwMtLdUqa8v2k+kPZy)
-
 **seq2linq** is Go implementation of .NET's 
-[LINQ to Objects](https://learn.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/linq-to-objects).
+[LINQ to Objects](https://learn.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/linq-to-objects)
+over [sequences of pairs of values](https://pkg.go.dev/iter#Seq2).
 (See also: [Language Integrated Query](https://en.wikipedia.org/wiki/Language_Integrated_Query),
 [LINQ](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/),
 [Enumerable Class](https://learn.microsoft.com/dotnet/api/system.linq.enumerable).)
+
+For Go implementation of
+[LINQ to Objects](https://learn.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/linq-to-objects)
+over [sequences of individual values](https://pkg.go.dev/iter#Seq)
+see [**go2linq**](https://github.com/solsw/go2linq) package.
 
 ---
 
@@ -16,11 +20,6 @@
 ```
 go get github.com/solsw/seq2linq
 ```
-
-## Examples
-
-Examples of **seq2linq** usage are in the `Example...` functions in test files
-(see [Examples](https://pkg.go.dev/github.com/solsw/seq2linq#pkg-examples)).
 
 ### Quick and easy example:
 
