@@ -11,22 +11,22 @@ import (
 func TestAny(t *testing.T) {
 	tests := []struct {
 		name        string
-		in          iter.Seq2[int, string]
+		seq2        iter.Seq2[int, string]
 		want        bool
 		expectedErr error
 	}{
 		{name: "EmptyReturnsFalse",
-			in:   iterhelper.Empty2[int, string](),
+			seq2: iterhelper.Empty2[int, string](),
 			want: false,
 		},
 		{name: "NonEmptyReturnsTrue",
-			in:   sec2_int_word(),
+			seq2: sec2_int_word(),
 			want: true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, gotErr := Any(tt.in)
+			got, gotErr := Any(tt.seq2)
 			if gotErr != nil {
 				if tt.expectedErr == nil {
 					t.Errorf("Any() failed: %v", gotErr)
@@ -46,28 +46,28 @@ func TestAny(t *testing.T) {
 func TestAnyPred(t *testing.T) {
 	tests := []struct {
 		name        string
-		in          iter.Seq2[int, string]
+		seq2        iter.Seq2[int, string]
 		pred        func(int, string) bool
 		want        bool
 		expectedErr error
 	}{
 		{name: "EmptyReturnsFalse",
-			in:   iterhelper.Empty2[int, string](),
+			seq2: iterhelper.Empty2[int, string](),
 			pred: func(int, string) bool { return true },
 			want: false,
 		},
 		{name: "PredMatchesPair",
-			in:   sec2_int_word(),
+			seq2: sec2_int_word(),
 			pred: func(i int, s string) bool { return i == 2 && s == "two" },
 			want: true,
 		},
 		{name: "PredMatchesNoPairs",
-			in:   sec2_int_word(),
+			seq2: sec2_int_word(),
 			pred: func(i int, s string) bool { return i == 1 && s == "two" },
 			want: false,
 		},
 		{name: "SequenceIsNotEvaluatedAfterFirstMatch",
-			in: errorhelper.Must(Select(
+			seq2: errorhelper.Must(Select(
 				errorhelper.Must(iterhelper.Var2[int, string](6, "6", 4, "4", 0, "0", 2, "2")),
 				func(i int, s string) (int, string) { return 12 / i, s },
 			)),
@@ -77,7 +77,7 @@ func TestAnyPred(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, gotErr := AnyPred(tt.in, tt.pred)
+			got, gotErr := AnyPred(tt.seq2, tt.pred)
 			if gotErr != nil {
 				if tt.expectedErr == nil {
 					t.Errorf("AnyPred() failed: %v", gotErr)

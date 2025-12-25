@@ -12,53 +12,53 @@ import (
 func TestAll(t *testing.T) {
 	tests := []struct {
 		name        string
-		in          iter.Seq2[int, string]
+		seq2        iter.Seq2[int, string]
 		pred        func(int, string) bool
 		want        bool
 		expectedErr error
 	}{
 		{name: "NilInThrows",
-			in:          nil,
+			seq2:        nil,
 			pred:        func(int, string) bool { return true },
 			expectedErr: ErrNilInput,
 		},
 		{name: "NilPredThrows",
-			in:          sec2_int_word(),
+			seq2:        sec2_int_word(),
 			pred:        nil,
 			expectedErr: ErrNilPredicate,
 		},
 		{name: "EmptyAlwaysReturnsTrue",
-			in:   iterhelper.Empty2[int, string](),
+			seq2: iterhelper.Empty2[int, string](),
 			pred: func(int, string) bool { return false },
 			want: true,
 		},
 		{name: "AlwaysTruePredReturnsTrue",
-			in:   sec2_int_word(),
+			seq2: sec2_int_word(),
 			pred: func(int, string) bool { return true },
 			want: true,
 		},
 		{name: "AlwaysFalsePredReturnsFalse",
-			in:   sec2_int_word(),
+			seq2: sec2_int_word(),
 			pred: func(int, string) bool { return false },
 			want: false,
 		},
 		{name: "PredMatchingNoElements",
-			in:   sec2_int_word(),
+			seq2: sec2_int_word(),
 			pred: func(_ int, s string) bool { return len(s) < 3 },
 			want: false,
 		},
 		{name: "PredMatchingSomeElements",
-			in:   sec2_int_word(),
+			seq2: sec2_int_word(),
 			pred: func(_ int, s string) bool { return len(s) == 3 },
 			want: false,
 		},
 		{name: "PredMatchingAllElements",
-			in:   sec2_int_word(),
+			seq2: sec2_int_word(),
 			pred: func(_ int, s string) bool { return len(s) >= 3 },
 			want: true,
 		},
 		{name: "SequenceIsNotEvaluatedAfterFirstNonMatch",
-			in: errorhelper.Must(Select(
+			seq2: errorhelper.Must(Select(
 				errorhelper.Must(iterhelper.Var2[int, string](4, "4", 6, "6", 0, "0", 1, "1", 2, "2")),
 				func(i int, s string) (int, string) { return 12 / i, s },
 			)),
@@ -68,7 +68,7 @@ func TestAll(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, gotErr := All(tt.in, tt.pred)
+			got, gotErr := All(tt.seq2, tt.pred)
 			if gotErr != nil {
 				if tt.expectedErr == nil {
 					t.Errorf("All() failed: %v", gotErr)

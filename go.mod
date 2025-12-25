@@ -4,7 +4,7 @@ go 1.25
 
 require (
 	github.com/solsw/errorhelper v0.10.0
-	github.com/solsw/iterhelper v0.7.0
+	github.com/solsw/iterhelper v0.8.0
 )
 
 require (

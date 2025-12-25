@@ -13,40 +13,40 @@ import (
 func TestSelect(t *testing.T) {
 	tests := []struct {
 		name        string
-		in          iter.Seq2[int, string]
+		seq2        iter.Seq2[int, string]
 		sel         func(int, string) (int, string)
 		want        iter.Seq2[int, string]
 		expectedErr error
 	}{
 		{name: "NilInThrows",
-			in:          nil,
+			seq2:        nil,
 			sel:         func(i int, s string) (int, string) { return i, s },
 			expectedErr: ErrNilInput,
 		},
 		{name: "NilSelThrows",
-			in:          sec2_int_word(),
+			seq2:        sec2_int_word(),
 			sel:         nil,
 			expectedErr: ErrNilSelector,
 		},
 		{name: "EmptyIn",
-			in:   iterhelper.Empty2[int, string](),
+			seq2: iterhelper.Empty2[int, string](),
 			sel:  func(i int, s string) (int, string) { return i, s },
 			want: iterhelper.Empty2[int, string](),
 		},
 		{name: "Projection1",
-			in:   sec2_int_word(),
+			seq2: sec2_int_word(),
 			sel:  func(i int, s string) (int, string) { return i, s },
 			want: sec2_int_word(),
 		},
 		{name: "Projection2",
-			in:   sec2_int_string(2),
+			seq2: sec2_int_string(2),
 			sel:  func(i int, s string) (int, string) { return i + i, s + s },
 			want: errorhelper.Must(iterhelper.Var2[int, string](0, "00", 2, "11")),
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, gotErr := Select(tt.in, tt.sel)
+			got, gotErr := Select(tt.seq2, tt.sel)
 			if gotErr != nil {
 				if tt.expectedErr == nil {
 					t.Errorf("Select() failed: %v", gotErr)
@@ -71,18 +71,18 @@ func TestSelect(t *testing.T) {
 func TestSelectIdx(t *testing.T) {
 	tests := []struct {
 		name        string
-		in          iter.Seq2[int, string]
+		seq2        iter.Seq2[int, string]
 		sel         func(int, string, int) (string, int)
 		want        iter.Seq2[string, int]
 		expectedErr error
 	}{
 		{name: "EmptyIn",
-			in:   iterhelper.Empty2[int, string](),
+			seq2: iterhelper.Empty2[int, string](),
 			sel:  func(int, string, int) (string, int) { return "", 0 },
 			want: iterhelper.Empty2[string, int](),
 		},
 		{name: "Projection",
-			in: errorhelper.Must(Where(sec2_int_word(), func(i int, _ string) bool { return i < 5 && i%2 == 0 })),
+			seq2: errorhelper.Must(Where(sec2_int_word(), func(i int, _ string) bool { return i < 5 && i%2 == 0 })),
 			sel: func(i int, s string, idx int) (string, int) {
 				return strconv.Itoa(idx) + ":" + s, i * i
 			},
@@ -91,7 +91,7 @@ func TestSelectIdx(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, gotErr := SelectIdx(tt.in, tt.sel)
+			got, gotErr := SelectIdx(tt.seq2, tt.sel)
 			if gotErr != nil {
 				if tt.expectedErr == nil {
 					t.Errorf("SelectIdx() failed: %v", gotErr)

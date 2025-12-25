@@ -47,13 +47,11 @@ func TestConcat(t *testing.T) {
 			in2:  inst2,
 			want: errorhelper.Must(iterhelper.Var2[int, string](1, "one", 2, "two", 1, "one", 2, "two")),
 		},
-		// {name: "SameEnumerableInt2",
-		// 	args: args{
-		// 		first:  errorhelper.Must(Take(rg, 2)),
-		// 		second: errorhelper.Must(Skip(rg, 2)),
-		// 	},
-		// 	want: iterhelper.Var(1, 2, 3, 4),
-		// },
+		{name: "SameSequence2",
+			in1:  errorhelper.Must(Take(sec2_int_word(), 2)),
+			in2:  errorhelper.Must(Skip(sec2_int_word(), 2)),
+			want: sec2_int_word(),
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

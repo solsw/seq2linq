@@ -55,7 +55,7 @@ func TestRepeat(t *testing.T) {
 			}
 			equal, _ := iterhelper.Equal2(got, tt.want)
 			if !equal {
-				t.Errorf("Repeat() = %v, want %v", got, tt.want)
+				t.Errorf("Repeat(): %v, want: %v", iterhelper.StringDef2(got), iterhelper.StringDef2(tt.want))
 			}
 		})
 	}
