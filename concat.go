@@ -6,22 +6,24 @@ import (
 	"github.com/solsw/errorhelper"
 )
 
-// Concat concatenates two [sequences].
+// Concat concatenates [sequences].
 //
 // [sequences]: https://pkg.go.dev/iter#Seq2
-func Concat[K, V any](in1, in2 iter.Seq2[K, V]) (iter.Seq2[K, V], error) {
-	if in1 == nil || in2 == nil {
-		return nil, errorhelper.CallerError(ErrNilInput)
+func Concat[K, V any](seq2s ...iter.Seq2[K, V]) (iter.Seq2[K, V], error) {
+	if len(seq2s) == 0 {
+		return nil, errorhelper.CallerError(ErrEmptyInput)
+	}
+	for _, seq2 := range seq2s {
+		if seq2 == nil {
+			return nil, errorhelper.CallerError(ErrNilInput)
+		}
 	}
 	return func(yield func(K, V) bool) {
-			for k1, v1 := range in1 {
-				if !yield(k1, v1) {
-					return
-				}
-			}
-			for k2, v2 := range in2 {
-				if !yield(k2, v2) {
-					return
+			for _, seq2 := range seq2s {
+				for k, v := range seq2 {
+					if !yield(k, v) {
+						return
+					}
 				}
 			}
 		},

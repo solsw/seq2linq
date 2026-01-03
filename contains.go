@@ -8,7 +8,7 @@ import (
 )
 
 // Contains determines whether a [sequence] contains a specified pair of values
-// by using [reflect.DeepEqual] to determine equality of corresponding values.
+// by using [reflect.DeepEqual] to determine equality of corresponding values of pair.
 //
 // [sequence]: https://pkg.go.dev/iter#Seq2
 func Contains[K, V any](seq2 iter.Seq2[K, V], valK K, valV V) (bool, error) {

@@ -18,17 +18,17 @@ func TestSelect(t *testing.T) {
 		want        iter.Seq2[int, string]
 		expectedErr error
 	}{
-		{name: "NilInThrows",
+		{name: "NilInput",
 			seq2:        nil,
 			sel:         func(i int, s string) (int, string) { return i, s },
 			expectedErr: ErrNilInput,
 		},
-		{name: "NilSelThrows",
+		{name: "NilSelector",
 			seq2:        sec2_int_word(),
 			sel:         nil,
 			expectedErr: ErrNilSelector,
 		},
-		{name: "EmptyIn",
+		{name: "EmptyInput",
 			seq2: iterhelper.Empty2[int, string](),
 			sel:  func(i int, s string) (int, string) { return i, s },
 			want: iterhelper.Empty2[int, string](),
@@ -76,7 +76,7 @@ func TestSelectIdx(t *testing.T) {
 		want        iter.Seq2[string, int]
 		expectedErr error
 	}{
-		{name: "EmptyIn",
+		{name: "EmptyInput",
 			seq2: iterhelper.Empty2[int, string](),
 			sel:  func(int, string, int) (string, int) { return "", 0 },
 			want: iterhelper.Empty2[string, int](),

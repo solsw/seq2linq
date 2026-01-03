@@ -5,6 +5,7 @@ import (
 )
 
 var (
+	ErrEmptyInput    = errors.New("empty input")
 	ErrNegativeCount = errors.New("negative count")
 	ErrNilEqual      = errors.New("nil equal")
 	ErrNilInput      = errors.New("nil input sequence")

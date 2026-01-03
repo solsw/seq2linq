@@ -18,7 +18,7 @@ func TestContains(t *testing.T) {
 		want        bool
 		expectedErr error
 	}{
-		{name: "EmptyIn",
+		{name: "EmptyInput",
 			seq2: iterhelper.Empty2[int, string](),
 			valK: 1,
 			valV: "one",
@@ -66,17 +66,17 @@ func TestContainsEq(t *testing.T) {
 		want        bool
 		expectedErr error
 	}{
-		{name: "NilInThrows",
+		{name: "NilInput",
 			seq2:        nil,
 			eq:          func(int, string, int, string) bool { return true },
 			expectedErr: ErrNilInput,
 		},
-		{name: "NilEqThrows",
+		{name: "NilEqual",
 			seq2:        sec2_int_word(),
 			eq:          nil,
 			expectedErr: ErrNilEqual,
 		},
-		{name: "EmptyIn",
+		{name: "EmptyInput",
 			seq2: iterhelper.Empty2[int, string](),
 			valK: 1,
 			valV: "one",

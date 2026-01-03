@@ -17,12 +17,12 @@ func TestAll(t *testing.T) {
 		want        bool
 		expectedErr error
 	}{
-		{name: "NilInThrows",
+		{name: "NilInput",
 			seq2:        nil,
 			pred:        func(int, string) bool { return true },
 			expectedErr: ErrNilInput,
 		},
-		{name: "NilPredThrows",
+		{name: "NilPredicate",
 			seq2:        sec2_int_word(),
 			pred:        nil,
 			expectedErr: ErrNilPredicate,

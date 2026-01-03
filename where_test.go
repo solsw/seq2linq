@@ -17,17 +17,17 @@ func TestWhere(t *testing.T) {
 		want        iter.Seq2[int, string]
 		expectedErr error
 	}{
-		{name: "NilInThrows",
+		{name: "NilInput",
 			seq2:        nil,
 			pred:        func(i int, _ string) bool { return i > 5 },
 			expectedErr: ErrNilInput,
 		},
-		{name: "NilPredThrows",
+		{name: "NilPredicate",
 			seq2:        sec2_int_word(),
 			pred:        nil,
 			expectedErr: ErrNilPredicate,
 		},
-		{name: "EmptyIn",
+		{name: "EmptyInput",
 			seq2: iterhelper.Empty2[int, string](),
 			pred: func(i int, _ string) bool { return i > 5 },
 			want: iterhelper.Empty2[int, string](),
@@ -85,7 +85,7 @@ func TestWhereIdx(t *testing.T) {
 		want        iter.Seq2[int, string]
 		expectedErr error
 	}{
-		{name: "EmptyIn",
+		{name: "EmptyInput",
 			seq2: iterhelper.Empty2[int, string](),
 			pred: func(i int, _ string, _ int) bool { return i > 5 },
 			want: iterhelper.Empty2[int, string](),

@@ -17,7 +17,7 @@ func TestPrepend(t *testing.T) {
 		want        iter.Seq2[int, string]
 		expectedErr error
 	}{
-		{name: "EmptyIn",
+		{name: "EmptyInput",
 			seq2: iterhelper.Empty2[int, string](),
 			k:    1,
 			v:    "one",
