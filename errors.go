@@ -5,7 +5,7 @@ import (
 )
 
 var (
-	ErrEmptyInput      = errors.New("empty input")
+	ErrEmptyInput      = errors.New("empty input sequence")
 	ErrIndexOutOfRange = errors.New("index out of range")
 	ErrNegativeCount   = errors.New("negative count")
 	ErrNilEqual        = errors.New("nil equal")
@@ -13,4 +13,5 @@ var (
 	ErrNilNext         = errors.New("nil next")
 	ErrNilPredicate    = errors.New("nil predicate")
 	ErrNilSelector     = errors.New("nil selector")
+	ErrNoMatch         = errors.New("no predicate match")
 )
