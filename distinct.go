@@ -8,9 +8,8 @@ import (
 	"github.com/solsw/generichelper"
 )
 
-// Distinct returns distinct elements from a [sequence]
-// by using [reflect.DeepEqual] to determine equality of corresponding values of pair.
-// Order of elements in the result corresponds to the order of elements in the source.
+// Distinct returns distinct elements (pairs of values) from a [sequence]
+// by using [reflect.DeepEqual] to determine equality of corresponding values of pairs.
 //
 // [sequence]: https://pkg.go.dev/iter#Seq2
 func Distinct[K, V any](seq2 iter.Seq2[K, V]) (iter.Seq2[K, V], error) {
@@ -26,9 +25,8 @@ func Distinct[K, V any](seq2 iter.Seq2[K, V]) (iter.Seq2[K, V], error) {
 	return r, nil
 }
 
-// DistinctEq returns distinct elements from a [sequence]
-// by using a specified function to determine equality of corresponding values of pair.
-// Order of elements in the result corresponds to the order of elements in the source.
+// DistinctEq returns distinct elements (pairs of values) from a [sequence]
+// by using a specified function to determine equality of corresponding values of pairs.
 //
 // [sequence]: https://pkg.go.dev/iter#Seq2
 func DistinctEq[K, V any](seq2 iter.Seq2[K, V], eq func(K, V, K, V) bool) (iter.Seq2[K, V], error) {
