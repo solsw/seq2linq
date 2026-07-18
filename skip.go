@@ -72,9 +72,8 @@ func SkipWhile[K, V any](seq2 iter.Seq2[K, V], pred func(K, V) bool) (iter.Seq2[
 				if !rest {
 					if pred(k, v) {
 						continue
-					} else {
-						rest = true
 					}
+					rest = true
 				}
 				if !yield(k, v) {
 					return
@@ -104,9 +103,8 @@ func SkipWhileIdx[K, V any](seq2 iter.Seq2[K, V], pred func(K, V, int) bool) (it
 					if pred(k, v, i) {
 						i++
 						continue
-					} else {
-						rest = true
 					}
+					rest = true
 				}
 				if !yield(k, v) {
 					return

@@ -7,6 +7,8 @@ import (
 var (
 	ErrEmptyInput      = errors.New("empty input sequence")
 	ErrIndexOutOfRange = errors.New("index out of range")
+	ErrMultiElements   = errors.New("sequence contains multiple elements")
+	ErrMultiMatch      = errors.New("multiple predicate matches")
 	ErrNegativeCount   = errors.New("negative count")
 	ErrNilEqual        = errors.New("nil equal function")
 	ErrNilInput        = errors.New("nil input sequence")

@@ -20,7 +20,8 @@ func First[K, V any](seq2 iter.Seq2[K, V]) (K, V, error) {
 	return generichelper.ZeroValue[K](), generichelper.ZeroValue[V](), errorhelper.CallerError(ErrEmptyInput)
 }
 
-// FirstPred returns the first element (a pair of values) in a [sequence] that satisfies a specified predicate.
+// FirstPred returns the first element (a pair of values)
+// in a [sequence] that satisfies a specified predicate.
 //
 // [sequence]: https://pkg.go.dev/iter#Seq2
 func FirstPred[K, V any](seq2 iter.Seq2[K, V], pred func(K, V) bool) (K, V, error) {
@@ -44,7 +45,7 @@ func FirstPred[K, V any](seq2 iter.Seq2[K, V], pred func(K, V) bool) (K, V, erro
 }
 
 // FirstOrDefault returns the first element (a pair of values) of a [sequence],
-// or a pair of corresponding [zero values] if the sequence contains no elements.
+// or a pair of corresponding [zero values] if the [sequence] contains no elements.
 //
 // [sequence]: https://pkg.go.dev/iter#Seq2
 // [zero values]: https://go.dev/ref/spec#The_zero_value

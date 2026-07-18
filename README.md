@@ -1,5 +1,6 @@
 # seq2linq
 [![Go Reference](https://pkg.go.dev/badge/github.com/solsw/seq2linq.svg)](https://pkg.go.dev/github.com/solsw/seq2linq)
+[![Documentation](https://img.shields.io/badge/docs-github.io-green)](https://solsw.github.io/seq2linq/)
 
 **seq2linq** is Go implementation of .NET's 
 [LINQ to Objects](https://learn.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/linq-to-objects)

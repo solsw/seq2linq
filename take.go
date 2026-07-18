@@ -43,10 +43,11 @@ func TakeLast[K, V any](seq2 iter.Seq2[K, V], count int) (iter.Seq2[K, V], error
 		return iterhelper.Empty2[K, V](), nil
 	}
 	vv := iterhelper.Collect2(seq2)
-	if count >= len(vv)/2 {
-		return seq2, nil
+	low := 0
+	if count < len(vv)/2 {
+		low = len(vv) - count*2
 	}
-	r, err := iterhelper.Var2[K, V](vv[len(vv)-count*2:]...)
+	r, err := iterhelper.Var2[K, V](vv[low:]...)
 	if err != nil {
 		return nil, errorhelper.CallerError(err)
 	}

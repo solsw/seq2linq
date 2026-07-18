@@ -30,7 +30,7 @@ func Where[K, V any](seq2 iter.Seq2[K, V], pred func(K, V) bool) (iter.Seq2[K, V
 }
 
 // WhereIdx uses a predicate to filter a sequence of pairs of values yielded by the [iterator].
-// Each value's index is used seq2 the logic of the predicate function.
+// Each value's index is used in the logic of the predicate function.
 //
 // [iterator]: https://pkg.go.dev/iter#Seq2
 func WhereIdx[K, V any](seq2 iter.Seq2[K, V], pred func(K, V, int) bool) (iter.Seq2[K, V], error) {

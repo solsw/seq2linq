@@ -27,7 +27,7 @@ func Select[InK, InV, OutK, OutV any](seq2 iter.Seq2[InK, InV], sel func(InK, In
 }
 
 // SelectIdx projects each pair of values yielded by the [iterator] into a new form.
-// Each pair's index is used seq2 the logic of the selector function.
+// Each pair's index is used in the logic of the selector function.
 //
 // [iterator]: https://pkg.go.dev/iter#Seq2
 func SelectIdx[InK, InV, OutK, OutV any](seq2 iter.Seq2[InK, InV],
